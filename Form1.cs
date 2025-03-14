@@ -124,5 +124,18 @@ namespace FiltersLab
         {
             HandleWithFilter(new GaussianFilter());
         }
+        private void grayScaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new GrayScaleFilter());
+        }
+        private void sepiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new SepiaFilter());
+        }
+
+        private void увеличениеЯркостиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new BrightnessUpFilter());
+        }
     }
 }
