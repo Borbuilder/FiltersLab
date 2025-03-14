@@ -62,7 +62,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SepiaFilter.cs" />
+    <Compile Include="SharpnessUpFilter.cs" />
     <Compile Include="SobelXFilter.cs" />
+    <Compile Include="SoberYFilter.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

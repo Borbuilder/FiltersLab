@@ -39,6 +39,7 @@ namespace FiltersLab
         }
 
         
+        //Управление backgroundWorker
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -91,6 +92,7 @@ namespace FiltersLab
         }
 
 
+        //События фильтров
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -116,18 +118,22 @@ namespace FiltersLab
         {
             HandleWithFilter(new InvertFilter());   
         }
+
         private void размытиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HandleWithFilter(new BlurFilter());
         }
+
         private void размытиеПоГауссуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HandleWithFilter(new GaussianFilter());
         }
+
         private void grayScaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HandleWithFilter(new GrayScaleFilter());
         }
+
         private void sepiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HandleWithFilter(new SepiaFilter());
@@ -136,6 +142,21 @@ namespace FiltersLab
         private void увеличениеЯркостиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HandleWithFilter(new BrightnessUpFilter());
+        }
+
+        private void фильтрСобеляXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new SobelXFilter());
+        }
+
+        private void фильтрСобеляYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new SobelYFilter());
+        }
+
+        private void увеличениеРезкостиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new SharpnessUpFilter());
         }
     }
 }

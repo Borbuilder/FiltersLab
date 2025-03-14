@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace FiltersLab
 {
-    class SobelXFilter: MatrixFilter
+    class SobelYFilter : MatrixFilter
     {
-        public SobelXFilter()
+        public SobelYFilter()
         {
             kernel = new float[,] {
 
-                {-1.0f, 0.0f, 1.0f},
-                {-2.0f, 0.0f, 2.0f},
-                {-1.0f, 0.0f, 1.0f}
+                {-1.0f, -2.0f, 1.0f},
+                {0.0f, 0.0f, 0.0f},
+                {1.0f, 2.0f, 1.0f}
             };
         }
     }
