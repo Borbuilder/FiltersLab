@@ -35,9 +35,16 @@ namespace FiltersLab
 
                     Color neighbourColor = sourceImage.GetPixel(idX, idY);
 
-                    resultR += neighbourColor.R * kernel[k + radiusX, l + radiusY];
-                    resultG += neighbourColor.G * kernel[k + radiusX, l + radiusY];
-                    resultB += neighbourColor.B * kernel[k + radiusX, l + radiusY];
+                    int kernelX = k + radiusX;
+                    int kernelY = l + radiusY;
+
+                    if (kernelX >= 0 && kernelX < kernel.GetLength(0) &&
+                        kernelY >= 0 && kernelY < kernel.GetLength(1))
+                    {
+                        resultR += neighbourColor.R * kernel[kernelX, kernelY];
+                        resultG += neighbourColor.G * kernel[kernelX, kernelY];
+                        resultB += neighbourColor.B * kernel[kernelX, kernelY];
+                    }
                 }
             }
 

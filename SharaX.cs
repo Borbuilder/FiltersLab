@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace FiltersLab
 {
-    class SharpnessUpFilter: MatrixFilter
+    class SharaX: MatrixFilter
     {
-        public SharpnessUpFilter()
+        public SharaX()
         {
             kernel = new float[,] {
 
-                { 0.0f, -1.0f, 0.0f},
-                { -1.0f, 5.0f, -1.0f},
-                { 0.0f, -1.0f, 0.0f}
+                {3.0f, 0.0f, -3.0f},
+                {10.0f, 0.0f, -10.0f},
+                {3.0f, 0.0f, -3.0f}
             };
         }
     }
