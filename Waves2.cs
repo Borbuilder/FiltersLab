@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace FiltersLab
 {
-    class Waves: Filters
+    class Waves2 : Filters
     {
-        protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
+        protected override Color calculateNewPixelColor(Bitmap sourceImage, int k, int l)
         {
-            int newX = (int)(x + 20 * Math.Sin(2 * Math.PI * x / 30));
-            int newY = y;
+            int newX = k;
+            int newY = (int)(k + 20 * Math.Sin(2 * Math.PI * l / 30));
 
-            Color pixelColor=sourceImage.GetPixel(x, y);
+            Color pixelColor = sourceImage.GetPixel(k, l);
             if ((newX >= 0 && newX <= sourceImage.Width) && (newY >= 0 && newY <= sourceImage.Height))
             {
                 pixelColor = sourceImage.GetPixel(newX, newY);
             }
             return pixelColor;
         }
-        
+
     }
 }

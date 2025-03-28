@@ -72,7 +72,8 @@
     <Compile Include="SharpnessUpFilter.cs" />
     <Compile Include="SobelXFilter.cs" />
     <Compile Include="SoberYFilter.cs" />
-    <Compile Include="Waves.cs" />
+    <Compile Include="Waves1.cs" />
+    <Compile Include="Waves2.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

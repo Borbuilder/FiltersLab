@@ -327,11 +327,6 @@ namespace FiltersLab
             }
         }
 
-        private void волныToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            HandleWithFilter(new Waves());
-        }
-
         private void эффектСтеклаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HandleWithFilter(new GlassFilter());
@@ -370,6 +365,21 @@ namespace FiltersLab
         private void openingToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void волныToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void волны1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new Waves1());
+        }
+
+        private void волны2ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new Waves2());
         }
     }
 }
