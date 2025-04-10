@@ -14,7 +14,8 @@ namespace FiltersLab
         public Bitmap processImage(Bitmap sourceImage, BackgroundWorker worker)
         {
             
-                Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
+
+            Bitmap resultImage = new Bitmap(sourceImage.Width, sourceImage.Height);
 
                 int totalPixels = sourceImage.Width * sourceImage.Height;
                 int pixelsProcessed = 0;

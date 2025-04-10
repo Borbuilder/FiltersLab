@@ -12,7 +12,7 @@ namespace FiltersLab
     {
         protected override Color calculateNewPixelColor(Bitmap sourceImage, int k, int l)
         {
-            int newX = (int)(k + 20 * Math.Sin(2 * Math.PI * k / 30));
+            int newX = Clamp(k + (int)(20 * Math.Sin(2 * Math.PI * l / 60)), 0, sourceImage.Width - 1);
             int newY = l;
 
             Color pixelColor=sourceImage.GetPixel(k, l);

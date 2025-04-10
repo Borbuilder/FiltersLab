@@ -16,6 +16,11 @@ namespace FiltersLab
         bool filtersFlag = false;
         bool dilFlag = false;
         bool erFlag = false;
+        bool opFlag = false;
+        bool clFlag = false;
+        bool gradFlag = false;
+        bool wrdFlag = false;
+        bool idlFlag = false;
         Bitmap image;
         private Stack<Bitmap> returnBack = new Stack<Bitmap>();
         private Stack<Bitmap> returnForward = new Stack<Bitmap>();
@@ -40,6 +45,11 @@ namespace FiltersLab
             filtersFlag = true;
             dilFlag = false;
             erFlag = false;
+            opFlag = false;
+            clFlag = false;
+            gradFlag = false;
+            wrdFlag = false;
+            idlFlag = false;
 
             if (image == null)
             {
@@ -63,6 +73,11 @@ namespace FiltersLab
             filtersFlag = false;
             dilFlag = true;
             erFlag = false;
+            opFlag = false;
+            clFlag = false;
+            gradFlag = false;
+            wrdFlag = false;
+            idlFlag = false;
 
             if (image == null)
             {
@@ -86,6 +101,11 @@ namespace FiltersLab
             filtersFlag = false;
             dilFlag = false;
             erFlag = true;
+            opFlag = false;
+            clFlag = false;
+            gradFlag = false;
+            wrdFlag = false;
+            idlFlag = false;
 
             if (image == null)
             {
@@ -104,6 +124,144 @@ namespace FiltersLab
             }
         }
 
+        private void HandleWithOpening(Opening filter)
+        {
+            filtersFlag = false;
+            dilFlag = false;
+            erFlag = false;
+            opFlag = true;
+            clFlag = false;
+            gradFlag = false;
+            wrdFlag = false;
+            idlFlag = false;
+
+            if (image == null)
+            {
+                MessageBox.Show("Изображение не загружено.");
+                return;
+            }
+
+            if (!backgroundWorker1.IsBusy)
+            {
+                SaveCondition();
+                backgroundWorker1.RunWorkerAsync(filter);
+            }
+            else
+            {
+                MessageBox.Show("Обработка уже выполняется.");
+            }
+        }
+
+        private void HandleWithClosing(Closing filter)
+        {
+            filtersFlag = false;
+            dilFlag = false;
+            erFlag = false;
+            opFlag = false;
+            clFlag = true;
+            gradFlag = false;
+            wrdFlag = false;
+            idlFlag = false;
+
+            if (image == null)
+            {
+                MessageBox.Show("Изображение не загружено.");
+                return;
+            }
+
+            if (!backgroundWorker1.IsBusy)
+            {
+                SaveCondition();
+                backgroundWorker1.RunWorkerAsync(filter);
+            }
+            else
+            {
+                MessageBox.Show("Обработка уже выполняется.");
+            }
+        }
+        private void HandleWithGrad(Gradient filter)
+        {
+            filtersFlag = false;
+            dilFlag = false;
+            erFlag = false;
+            opFlag = false;
+            clFlag = false;
+            gradFlag = true;
+            wrdFlag = false;
+            idlFlag = false;
+
+            if (image == null)
+            {
+                MessageBox.Show("Изображение не загружено.");
+                return;
+            }
+
+            if (!backgroundWorker1.IsBusy)
+            {
+                SaveCondition();
+                backgroundWorker1.RunWorkerAsync(filter);
+            }
+            else
+            {
+                MessageBox.Show("Обработка уже выполняется.");
+            }
+        }
+
+        private void HandleWithGrayWorld(GrayWorld filter)
+        {
+            filtersFlag = false;
+            dilFlag = false;
+            erFlag = false;
+            opFlag = false;
+            clFlag = false;
+            gradFlag = false;
+            wrdFlag = true;
+            idlFlag = false;
+
+            if (image == null)
+            {
+                MessageBox.Show("Изображение не загружено.");
+                return;
+            }
+
+            if (!backgroundWorker1.IsBusy)
+            {
+                SaveCondition();
+                backgroundWorker1.RunWorkerAsync(filter);
+            }
+            else
+            {
+                MessageBox.Show("Обработка уже выполняется.");
+            }
+        }
+
+        private void HandleWithIdlReflector(IdealReflector filter)
+        {
+            filtersFlag = false;
+            dilFlag = false;
+            erFlag = false;
+            opFlag = false;
+            clFlag = false;
+            gradFlag = false;
+            wrdFlag = false;
+            idlFlag = true;
+
+            if (image == null)
+            {
+                MessageBox.Show("Изображение не загружено.");
+                return;
+            }
+
+            if (!backgroundWorker1.IsBusy)
+            {
+                SaveCondition();
+                backgroundWorker1.RunWorkerAsync(filter);
+            }
+            else
+            {
+                MessageBox.Show("Обработка уже выполняется.");
+            }
+        }
         private void SaveCondition()
         {
             if (image != null)
@@ -138,6 +296,30 @@ namespace FiltersLab
                 {
                     Erosion filter = (Erosion)e.Argument;
                     Bitmap newImage = filter.ErosionProcessImage(image, backgroundWorker1);
+                    e.Result = newImage;
+                }
+                else if (opFlag)
+                {
+                    Opening filter = (Opening)e.Argument;
+                    Bitmap newImage = filter.OpeningProcessImage(image, backgroundWorker1);
+                    e.Result = newImage;
+                }
+                else if (clFlag)
+                {
+                    Closing filter = (Closing)e.Argument;
+                    Bitmap newImage = filter.ClosingProcessImage(image, backgroundWorker1);
+                    e.Result = newImage;
+                }
+                else if (wrdFlag)
+                {
+                    GrayWorld filter = (GrayWorld)e.Argument;
+                    Bitmap newImage = filter.GrayWorldProcessImage(image, backgroundWorker1);
+                    e.Result = newImage;
+                }
+                else if (idlFlag)
+                {
+                    IdealReflector filter = (IdealReflector)e.Argument;
+                    Bitmap newImage = filter.IdealReflectorProcessImage(image, backgroundWorker1);
                     e.Result = newImage;
                 }
 
@@ -364,7 +546,7 @@ namespace FiltersLab
 
         private void openingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            HandleWithOpening(new Opening(structuralElement));
         }
 
         private void волныToolStripMenuItem_Click(object sender, EventArgs e)
@@ -380,6 +562,60 @@ namespace FiltersLab
         private void волны2ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             HandleWithFilter(new Waves2());
+        }
+
+        private void closingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithClosing(new Closing(structuralElement));
+        }
+
+        private void переносToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new Transfer());
+        }
+
+        private void поворотToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new Roatate(-45.0f,image));
+        }
+
+        private void gradientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithGrad(new Gradient(structuralElement));
+        }
+
+        private void медианныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new Median());
+        }
+
+        private void линейноеРастяжениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int Ymax_= 0;
+            int Ymin_ = 255;
+
+            for (int i = 0; i < image.Width; i++)
+            {
+                for (int j = 0; j < image.Height; j++)
+                {
+                    Color pixelColor = image.GetPixel(i, j);
+
+                    int intensity = (int)(0.299 * pixelColor.R + 0.587 * pixelColor.G + 0.114 * pixelColor.B);
+                    Ymax_ = Math.Max(Ymax_, intensity);
+                    Ymin_ = Math.Min(Ymin_, intensity);
+                }
+            }
+            HandleWithFilter(new Stretching(Ymax_, Ymin_));
+        }
+
+        private void серыйМирToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithGrayWorld(new GrayWorld());
+        }
+
+        private void идеальныйОтражательToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithIdlReflector(new IdealReflector());
         }
     }
 }
