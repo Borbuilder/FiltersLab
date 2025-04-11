@@ -617,5 +617,10 @@ namespace FiltersLab
         {
             HandleWithIdlReflector(new IdealReflector());
         }
+
+        private void дополнительноеЗаданиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HandleWithFilter(new MinimumDistance());
+        }
     }
 }

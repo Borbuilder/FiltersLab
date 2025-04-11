@@ -9,15 +9,19 @@ namespace FiltersLab
 {
     class Median : MatrixFilter
     {
-        public Median() // сглаживание или уменьшение шума
+        public Median() 
         {
-            // Ядро медианного фильтра (пример)
-            kernel = new float[,]
+            float count = 1;
+            int size = 7;
+            kernel = new float[size, size];
+            for (int i = 0; i < size; ++i)
             {
-                { 1, 2, 3 },
-                { 4, 5, 6 },
-                { 7, 8, 9 }
-            };
+                for (int j = 0; j < size; ++j)
+                {
+                    kernel[i, j] = count;
+                    count++;
+                }
+            }
         }
 
         protected override Color calculateNewPixelColor(Bitmap sourceImage, int x, int y)
